@@ -23,7 +23,9 @@
         <activity android:name=".InsertJurusan" />
         <activity android:name=".EditJurusan" />
         <activity android:name=".MahasiswaActivity" />
-        <activity android:name=".InsertMahasiswa"></activity>
+        <activity android:name=".InsertMahasiswa" />
+        <activity android:name=".Beasiswa" />
+        <activity android:name=".LaporanBeasiswa"></activity>
     </application>
 
 </manifest>

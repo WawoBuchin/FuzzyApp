@@ -80,7 +80,7 @@ public class JSONParser {
         }
 
         try{
-            Log.e("Buffer Error", json);
+            Log.e("Buffer Errori", json);
             jsonObject = new JSONObject(json);
         }catch (Exception e){
             Log.e("JSON Parser", "Error parsing data " + e.toString());

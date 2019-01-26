@@ -14,8 +14,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         btnjur = (Button) findViewById(R.id.buttonjur);
         btnmhs = (Button)findViewById(R.id.buttonmhs);
+        btnhit = (Button)findViewById(R.id.buttonhit);
+        btnlap = (Button)findViewById(R.id.buttonlap);
         btnjur.setOnClickListener(this);
         btnmhs.setOnClickListener(this);
+        btnhit.setOnClickListener(this);
+        btnlap.setOnClickListener(this);
     }
 
     @Override
@@ -27,6 +31,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.buttonmhs:
                 intent = new Intent(this, MahasiswaActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.buttonhit:
+                intent = new Intent(this, Beasiswa.class);
+                startActivity(intent);
+                break;
+            case R.id.buttonlap:
+                intent = new Intent(this, LaporanBeasiswa.class);
                 startActivity(intent);
                 break;
         }
