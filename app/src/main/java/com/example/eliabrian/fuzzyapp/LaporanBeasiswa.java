@@ -32,7 +32,7 @@ public class LaporanBeasiswa extends AppCompatActivity {
     ProgressDialog progressDialog;
     JSONArray laporan = null;
 
-    private static String url_laporan = "http://192.168.43.116:8888/PHP%20Beasiswa/read_beasiswa.php";
+    private static String url_laporan = "http://192.168.0.100/PHP%20Beasiswa/read_beasiswa.php";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_NETWORK = "NETWORK";
     private static final String TAG_DEBUG = "DEBUG";
@@ -53,6 +53,16 @@ public class LaporanBeasiswa extends AppCompatActivity {
         listView = (ListView)findViewById(R.id.listLaporan);
         laporanList = new ArrayList<>();
         new loadLaporan().execute();
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d(TAG_DEBUG, "On Click");
+                String kode = ((TextView)view.findViewById(R.id.tvKode)).getText().toString();
+                Intent i = new Intent(getApplicationContext(), EditJurusan.class);
+                i.putExtra(TAG_ID, kode);
+                startActivityForResult(i, 100);
+            }
+        });
     }
 
     private class loadLaporan extends AsyncTask<String, String, String> {
@@ -121,19 +131,9 @@ public class LaporanBeasiswa extends AppCompatActivity {
         protected void onPostExecute(String s){
             progressDialog.dismiss();
             ListAdapter adapter = new SimpleAdapter(LaporanBeasiswa.this, laporanList, R.layout.laporan_menu,
-                    new String[]{TAG_ID, TAG_NIM, TAG_NAMA, TAG_JURUSAN, TAG_PENGHASILAN, TAG_TANGGUNGAN, TAG_IPK, TAG_SKOR, TAG_STATUS},
-                    new int[]{R.id.tvId, R.id.tvNim, R.id.tvNama, R.id.tvJurusan, R.id.tvPenghasilan, R.id.tvTanggungan, R.id.tvIPK, R.id.tvSkor, R.id.tvStatus, });
+                    new String[]{ TAG_ID, TAG_NIM, TAG_NAMA, TAG_STATUS},
+                    new int[]{R.id.tvKode, R.id.tvNim, R.id.tvNama, R.id.tvStatus });
             listView.setAdapter(adapter);
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Log.d(TAG_DEBUG, "On Click");
-                    String kode = ((TextView)view.findViewById(R.id.tvKode)).getText().toString();
-                    Intent i = new Intent(getApplicationContext(), EditJurusan.class);
-                    //i.putExtra(TAG_KODE_JURUSAN, kode);
-                    startActivityForResult(i, 100);
-                }
-            });
         }
     }
 }

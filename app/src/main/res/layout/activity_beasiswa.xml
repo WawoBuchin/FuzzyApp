@@ -40,7 +40,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_weight="1"
-                        android:scrollbarSize="40dp" />
+                        android:scrollbarSize="40dp"
+                        />
                 </LinearLayout>
 
                 <LinearLayout
@@ -58,7 +59,7 @@
                             android:layout_height="match_parent"
                             android:hint="Penghasilan Orang Tua"
                             android:padding="10dp"
-                            android:inputType="text"/>
+                            android:inputType="numberDecimal"/>
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
 
@@ -77,7 +78,7 @@
                             android:layout_height="match_parent"
                             android:hint="Jumlah Tanggungan"
                             android:padding="10dp"
-                            android:inputType="text"/>
+                            android:inputType="number"/>
                     </android.support.design.widget.TextInputLayout>
 
                 </LinearLayout>
@@ -97,7 +98,7 @@
                             android:layout_height="match_parent"
                             android:hint="IPK"
                             android:padding="10dp"
-                            android:inputType="text"/>
+                            android:inputType="numberDecimal"/>
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
                 <LinearLayout

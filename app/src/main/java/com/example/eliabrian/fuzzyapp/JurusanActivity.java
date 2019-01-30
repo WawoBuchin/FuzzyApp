@@ -35,13 +35,15 @@ public class JurusanActivity extends AppCompatActivity implements View.OnClickLi
     ProgressDialog progressDialog;
     JSONArray jurusan = null;
 
-    private static String url_all_jurusan = "http://192.168.43.116:8888/PHP%20Beasiswa/read_jurusan.php";
+    private static String url_all_jurusan = "http://192.168.0.100/PHP%20Beasiswa/read_jurusan.php";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_JURUSAN = "jurusan";
     private static final String TAG_KODE_JURUSAN = "kode_jurusan";
     private static final String TAG_NAMA_JURUSAN = "nama_jurusan";
     private static final String TAG_NETWORK = "NETWORK";
     private static final String TAG_DEBUG = "DEBUG";
+    private static final String TAG_POSISI = "POSISI";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +58,11 @@ public class JurusanActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d(TAG_DEBUG, "On Click");
+                int pos = listView.getPositionForView(view);
+                Log.d(TAG_POSISI, String.valueOf(pos));
                 String kode = ((TextView)view.findViewById(R.id.tvKode)).getText().toString();
                 Intent i = new Intent(getApplicationContext(), EditJurusan.class);
+                i.putExtra(TAG_POSISI, pos);
                 i.putExtra(TAG_KODE_JURUSAN, kode);
                 startActivityForResult(i, 100);
             }
@@ -126,16 +131,7 @@ public class JurusanActivity extends AppCompatActivity implements View.OnClickLi
             progressDialog.dismiss();
             ListAdapter adapter = new SimpleAdapter(JurusanActivity.this, jurusanList, R.layout.jurusan_menu, new String[]{TAG_KODE_JURUSAN, TAG_NAMA_JURUSAN}, new int[]{R.id.tvKode, R.id.tvNama});
             listView.setAdapter(adapter);
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Log.d(TAG_DEBUG, "On Click");
-                    String kode = ((TextView)view.findViewById(R.id.tvKode)).getText().toString();
-                    Intent i = new Intent(getApplicationContext(), EditJurusan.class);
-                    i.putExtra(TAG_KODE_JURUSAN, kode);
-                    startActivityForResult(i, 100);
-                }
-            });
+
         }
     }
 

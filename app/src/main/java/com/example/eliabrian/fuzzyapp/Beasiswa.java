@@ -1,6 +1,7 @@
 package com.example.eliabrian.fuzzyapp;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
@@ -47,8 +48,8 @@ public class Beasiswa extends AppCompatActivity implements View.OnClickListener,
     float[] p = new float[6];
     float[] z = new float[6];
 
-    private static String url_beasiswa = "http://192.168.43.116:8888/PHP%20Beasiswa/create_beasiswa.php";
-    private static String url_mahasiswa = "http://192.168.43.116:8888/PHP%20Beasiswa/read_mahasiswa.php";
+    private static String url_beasiswa = "http://192.168.0.100/PHP%20Beasiswa/create_beasiswa.php";
+    private static String url_mahasiswa = "http://192.168.0.100/PHP%20Beasiswa/read_mahasiswa.php";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_DEBUG = "DEBUG";
     private static final String TAG_NETWORK = "NETWORK";
@@ -161,7 +162,7 @@ public class Beasiswa extends AppCompatActivity implements View.OnClickListener,
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         if (adapterView.getId() == R.id.spinner){
             sNimNama = adapterView.getItemAtPosition(i).toString();
-            Toast.makeText(adapterView.getContext(),"You selected : " + sNimNama, Toast.LENGTH_LONG).show();
+            //Toast.makeText(adapterView.getContext(),"You selected : " + sNimNama, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -203,7 +204,7 @@ public class Beasiswa extends AppCompatActivity implements View.OnClickListener,
                     String nim = a.getString("nim");
                     String nama = a.getString("nama_mahasiswa");
                     //Log.d("country", kdjur + mahasiswa.length());
-                    listMahasiswa.add(nim + "-" + nama);
+                    listMahasiswa.add(nim + " - " + nama);
 
                 }
             } catch (JSONException e) {
@@ -250,10 +251,9 @@ public class Beasiswa extends AppCompatActivity implements View.OnClickListener,
             try{
                 int success = jsonObject1.getInt(TAG_SUCCESS);
                 if(success == 1){
-                    //adapter.notifyDataSetChanged();
-                    //Intent i = new Intent(getApplicationContext(), MahasiswaActivity.class);
-                    //startActivity(i);
-                    //finish();
+                    Intent i = new Intent(getApplicationContext(), LaporanBeasiswa.class);
+                    startActivity(i);
+                    finish();
                 }else{
                     Log.d(TAG_DEBUG, "Failed to Insert Jurusan");
                 }
