@@ -48,8 +48,8 @@ public class Beasiswa extends AppCompatActivity implements View.OnClickListener,
     float[] p = new float[6];
     float[] z = new float[6];
 
-    private static String url_beasiswa = "http://192.168.0.100/PHP%20Beasiswa/create_beasiswa.php";
-    private static String url_mahasiswa = "http://192.168.0.100/PHP%20Beasiswa/read_mahasiswa.php";
+    private static String url_beasiswa = "http://192.168.43.116:8888/PHP%20Beasiswa/create_beasiswa.php";
+    private static String url_mahasiswa = "http://192.168.43.116:8888/PHP%20Beasiswa/read_mahasiswa.php";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_DEBUG = "DEBUG";
     private static final String TAG_NETWORK = "NETWORK";
@@ -142,11 +142,11 @@ public class Beasiswa extends AppCompatActivity implements View.OnClickListener,
                 float b = (p[0]+p[1]+p[2]+p[3]+p[4]+p[5]);
                 float akhir = a/b;
                 if(akhir <=2 ){
-                    sStatus = "Tidak dapat";
+                    sStatus = "Tidak Dapat Beasiswa";
                 }else if(akhir > 2 && akhir < 3){
                     sStatus = "Dipertimbangkan";
                 }else{
-                    sStatus = "Dapat beasiswa";
+                    sStatus = "Dapat Beasiswa";
                 }
                 for(i=0;i<=5;i++){
                     Log.d("hasil","z["+i+"] =" +z[i]);

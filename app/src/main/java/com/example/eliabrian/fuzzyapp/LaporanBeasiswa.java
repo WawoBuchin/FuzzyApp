@@ -1,9 +1,11 @@
 package com.example.eliabrian.fuzzyapp;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +16,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,6 +24,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -28,14 +32,16 @@ public class LaporanBeasiswa extends AppCompatActivity {
     //FloatingActionButton mInsert;
     JSONParser jsonParser = new JSONParser();
     ListView listView;
+    TextView tvnim;
     ArrayList<HashMap<String, String>> laporanList;
     ProgressDialog progressDialog;
     JSONArray laporan = null;
 
-    private static String url_laporan = "http://192.168.0.100/PHP%20Beasiswa/read_beasiswa.php";
+    private static String url_laporan = "http://192.168.43.116:8888/PHP%20Beasiswa/read_beasiswa.php";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_NETWORK = "NETWORK";
     private static final String TAG_DEBUG = "DEBUG";
+    private static final String TAG_NO = "no";
     private static final String TAG_ID = "id_beasiswa";
     private static final String TAG_NIM = "nim";
     private static final String TAG_NAMA = "nama_mahasiswa";
@@ -51,18 +57,73 @@ public class LaporanBeasiswa extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_laporan_beasiswa);
         listView = (ListView)findViewById(R.id.listLaporan);
+        HashMap<String, String> map = new HashMap<String, String>();
         laporanList = new ArrayList<>();
         new loadLaporan().execute();
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d(TAG_DEBUG, "On Click");
-                String kode = ((TextView)view.findViewById(R.id.tvKode)).getText().toString();
-                Intent i = new Intent(getApplicationContext(), EditJurusan.class);
-                i.putExtra(TAG_ID, kode);
-                startActivityForResult(i, 100);
+                String kode ="a";
+                Object a;
+                ArrayList<String> as = new ArrayList<String>();
+                //Intent i = new Intent(getApplicationContext(), EditJurusan.class);
+                //i.putExtra(TAG_ID, kode);
+                //startActivityForResult(i, 100);
+                a = parent.getItemAtPosition(position);
+                String  y =a.toString();
+                String no = y.split("id_beasiswa=")[1];
+                String noss = no.split(",")[0];
+                //System.out.println("Value is "+val);
+                Log.d("ADAAAA", y);
+                Log.d("QW", no);
+                Log.d("QW", noss);
+                //alertDilog(position,val);
+
             }
         });
+    }
+
+    public void alertDilog(final int position,String a) {
+
+        // TODO Auto-generated method stub
+
+        // Creating alert Dialog with two Buttons
+
+        String kode = a;
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+
+        // Setting Dialog Title
+        alertDialog.setTitle("Confirm Delete...");
+
+        // Setting Dialog Message
+        alertDialog.setMessage("Are you sure you want delete this?" +a);
+
+        // Setting Icon to Dialog
+        alertDialog.setIcon(R.drawable.ic_delete_forever_black_24dp);
+
+        // Setting Positive "Yes" Button
+        alertDialog.setPositiveButton("YES",new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog,int which) {
+
+                // Write your code here to execute after dialog
+
+            }
+        });
+        // Setting Negative "NO" Button
+        alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // Write your code here to execute after dialog
+
+                dialog.cancel();
+            }
+        });
+
+        // Showing Alert Message
+        alertDialog.show();
+
+
+
     }
 
     private class loadLaporan extends AsyncTask<String, String, String> {
@@ -91,6 +152,7 @@ public class LaporanBeasiswa extends AppCompatActivity {
                 int success = jsonObject.getInt(TAG_SUCCESS);
                 if(success == 1){
                     laporan = jsonObject.getJSONArray("beasiswa");
+                    int no = 1;
                     for (int i = 0; i<laporan.length(); i++){
                         try{
                             JSONObject c = laporan.getJSONObject(i);
@@ -104,6 +166,7 @@ public class LaporanBeasiswa extends AppCompatActivity {
                             String skor = c.getString(TAG_SKOR);
                             String status = c.getString(TAG_STATUS);
                             HashMap<String, String>map = new HashMap<String, String>();
+                            map.put(TAG_NO, String.valueOf(no));
                             map.put(TAG_ID, id);
                             map.put(TAG_NIM, nim);
                             map.put(TAG_NAMA, nama);
@@ -114,6 +177,7 @@ public class LaporanBeasiswa extends AppCompatActivity {
                             map.put(TAG_SKOR, skor);
                             map.put(TAG_STATUS, status);
                             laporanList.add(map);
+                            no++;
                         }catch(JSONException e){
                             e.printStackTrace();
                         }
@@ -131,8 +195,8 @@ public class LaporanBeasiswa extends AppCompatActivity {
         protected void onPostExecute(String s){
             progressDialog.dismiss();
             ListAdapter adapter = new SimpleAdapter(LaporanBeasiswa.this, laporanList, R.layout.laporan_menu,
-                    new String[]{ TAG_ID, TAG_NIM, TAG_NAMA, TAG_STATUS},
-                    new int[]{R.id.tvKode, R.id.tvNim, R.id.tvNama, R.id.tvStatus });
+                    new String[]{TAG_ID, TAG_NIM, TAG_NAMA, TAG_JURUSAN, TAG_IPK, TAG_STATUS},
+                    new int[]{R.id.tvKode, R.id.tvNim, R.id.tvNama, R.id.tvJurusan, R.id.tvIpk, R.id.tvStatus });
             listView.setAdapter(adapter);
         }
     }

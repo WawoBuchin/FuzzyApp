@@ -32,7 +32,7 @@ public class MahasiswaActivity extends AppCompatActivity implements View.OnClick
     ProgressDialog progressDialog;
     JSONArray mahasiswa = null;
 
-    private static String url_all_mahasiswa = "http://192.168.0.100/PHP%20Beasiswa/read_mahasiswa.php";
+    private static String url_all_mahasiswa = "http://192.168.43.116:8888/PHP%20Beasiswa/read_mahasiswa.php";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MAHASISWA = "mahasiswa";
     private static final String TAG_NIM_MAHASISWA = "nim";

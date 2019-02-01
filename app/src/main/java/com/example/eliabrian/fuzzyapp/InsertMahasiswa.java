@@ -42,12 +42,12 @@ public class InsertMahasiswa extends AppCompatActivity implements View.OnClickLi
     JSONObject jsonObject = null;
     ArrayList<String> listJurusan;
 
-    private static String url_login = "http://192.168.0.100/PHP%20Beasiswa/create_mahasiswa.php";
+    private static String url_login = "http://192.168.43.116:8888/PHP%20Beasiswa/create_mahasiswa.php";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_DEBUG = "DEBUG";
     private static final String TAG_NETWORK = "NETWORK";
 
-    private static String url_all_jurusan = "http://192.168.0.100/PHP%20Beasiswa/read_jurusan.php";
+    private static String url_all_jurusan = "http://192.168.43.116:8888/PHP%20Beasiswa/read_jurusan.php";
     private static final String TAG_JURUSAN = "jurusan";
     private static final String TAG_KODE_JURUSAN = "kode_jurusan";
     private static final String TAG_NAMA_JURUSAN = "nama_jurusan";

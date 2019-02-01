@@ -1,83 +1,147 @@
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
     android:descendantFocusability="blocksDescendants"
-    >
+    android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true">
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/tvKode"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="NIM"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:textColor="@color/colorBlack"
-                android:visibility="gone"
-                />
-            <TextView
-                android:id="@+id/nim"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="NIM"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:textColor="@color/colorBlack"
-                />
-            <TextView
-                android:id="@+id/tvNim"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="2016102545"
-                android:textSize="20sp"
-                />
-            <TextView
-                android:id="@+id/nama"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Nama Mahasiswa"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/colorBlack"
-                />
-            <TextView
-                android:id="@+id/tvNama"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Elia Brian Baskoro"
-                android:textSize="20sp"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            >
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No Beasiswa"/>
 
-            <TextView
-                android:id="@+id/tvStatus"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Dapat Beasiswa"
-                android:textSize="16sp"
-                android:layout_gravity="center_vertical"
-                android:textStyle="bold"
-                android:textAlignment="center"
-                android:textColor="@color/colorBlack"
-                />
-        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="79dp"
+            android:layout_marginRight="10dp"
+            android:text=":"/>
+
+        <TextView
+            android:id="@+id/tvKode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="aa"/>
     </LinearLayout>
-</RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nim"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="72dp"
+            android:layout_marginRight="10dp"
+            android:text=":"/>
+
+        <TextView
+            android:id="@+id/tvNim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="aa"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="10dp"
+            android:text=":"/>
+
+        <TextView
+            android:id="@+id/tvNama"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="aa"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jurusan"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="47dp"
+            android:layout_marginRight="9dp"
+            android:text=":"/>
+
+        <TextView
+            android:id="@+id/tvJurusan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="aa"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IPK"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="76dp"
+            android:layout_marginRight="10dp"
+            android:text=":"/>
+
+        <TextView
+            android:id="@+id/tvIpk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="aa"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Status"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="57dp"
+            android:layout_marginRight="9dp"
+            android:text=":"/>
+
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="aa"/>
+    </LinearLayout>
+
+</LinearLayout>
