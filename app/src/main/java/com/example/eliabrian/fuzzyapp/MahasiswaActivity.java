@@ -42,6 +42,8 @@ public class MahasiswaActivity extends AppCompatActivity implements View.OnClick
 
     private static final String TAG_NETWORK = "NETWORK";
     private static final String TAG_DEBUG = "DEBUG";
+    private static final String TAG_POSISI = "POSISI";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,19 @@ public class MahasiswaActivity extends AppCompatActivity implements View.OnClick
         mInsert = (FloatingActionButton)findViewById(R.id.fab);
         mInsert.setOnClickListener(this);
         new loadMahasiswa().execute();
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d(TAG_DEBUG, "On Click");
+                int pos = listView.getPositionForView(view);
+                Log.d(TAG_POSISI, String.valueOf(pos));
+                String nim = ((TextView)view.findViewById(R.id.tvNim)).getText().toString();
+                Intent i = new Intent(getApplicationContext(), EditMahasiswa.class);
+                i.putExtra(TAG_POSISI, pos);
+                i.putExtra(TAG_NIM_MAHASISWA, nim);
+                startActivityForResult(i, 100);
+            }
+        });
     }
 
     @Override
@@ -119,18 +134,9 @@ public class MahasiswaActivity extends AppCompatActivity implements View.OnClick
         @Override
         protected void onPostExecute(String s){
             progressDialog.dismiss();
-            ListAdapter adapter = new SimpleAdapter(MahasiswaActivity.this, mahasiswaList, R.layout.mahasiswa_menu, new String[]{TAG_NIM_MAHASISWA, TAG_NAMA_MAHASISWA, TAG_KODE_JURUSAN, TAG_SEMESTER}, new int[]{R.id.tvNim, R.id.tvNama, R.id.tvKode, R.id.tvSms});
+            ListAdapter adapter = new SimpleAdapter(MahasiswaActivity.this, mahasiswaList, R.layout.mahasiswa_menu, new String[]{TAG_NIM_MAHASISWA, TAG_NAMA_MAHASISWA, TAG_KODE_JURUSAN}, new int[]{R.id.tvNim, R.id.tvNama, R.id.tvKode,});
             listView.setAdapter(adapter);
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Log.d(TAG_DEBUG, "On Click");
-                    String kode = ((TextView)view.findViewById(R.id.tvKode)).getText().toString();
-                    Intent i = new Intent(getApplicationContext(), EditJurusan.class);
-                    i.putExtra(TAG_KODE_JURUSAN, kode);
-                    startActivityForResult(i, 100);
-                }
-            });
+
         }
     }
 }

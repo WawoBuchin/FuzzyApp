@@ -60,7 +60,7 @@ public class JSONParser {
             }
 
         }catch (Exception e){
-            Log.e("Networking", e.getLocalizedMessage());
+            e.printStackTrace();
             Log.e("Networking", "Error Boi " + e.toString());
             throw new IOException("Error Connecting");
         }
