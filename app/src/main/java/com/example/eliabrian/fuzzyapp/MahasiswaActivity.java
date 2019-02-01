@@ -61,7 +61,7 @@ public class MahasiswaActivity extends AppCompatActivity implements View.OnClick
                 int pos = listView.getPositionForView(view);
                 Log.d(TAG_POSISI, String.valueOf(pos));
                 String nim = ((TextView)view.findViewById(R.id.tvNim)).getText().toString();
-                Intent i = new Intent(getApplicationContext(), MahasiswaActivity.class);
+                Intent i = new Intent(getApplicationContext(), EditMahasiswa.class);
                 i.putExtra(TAG_POSISI, pos);
                 i.putExtra(TAG_NIM_MAHASISWA, nim);
                 startActivityForResult(i, 100);

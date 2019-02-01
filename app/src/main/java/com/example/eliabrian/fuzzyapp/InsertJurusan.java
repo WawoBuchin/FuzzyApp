@@ -25,7 +25,7 @@ public class InsertJurusan extends AppCompatActivity implements View.OnClickList
     FloatingActionButton mSave;
     String sKodeJurusan, sNamaJurusan;
 
-    private static String url_login = "http://192.168.43.116/PHP%20Beasiswa/create_jurusan.php";
+    private static String url_login = "http://192.168.0.100/PHP%20Beasiswa/create_jurusan.php";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_DEBUG = "DEBUG";
     private static final String TAG_NETWORK = "NETWORK";
