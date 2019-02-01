@@ -29,9 +29,9 @@ public class EditJurusan extends AppCompatActivity implements View.OnClickListen
     String sKodeJurusan, sNamaJurusan;
     int posisi;
 
-    private static String url_all_jurusan = "http://192.168.0.100/PHP%20Beasiswa/read_jurusan.php";
-    private static String url_delete_jurusan = "http://192.168.0.100/PHP%20Beasiswa/delete_jurusan.php";
-    private static String url_update_jurusan = "http://192.168.0.100/PHP%20Beasiswa/edit_jurusan.php";
+    private static String url_all_jurusan = "http://192.168.0.101/PHP%20Beasiswa/read_jurusan.php";
+    private static String url_delete_jurusan = "http://192.168.0.101/PHP%20Beasiswa/delete_jurusan.php";
+    private static String url_update_jurusan = "http://192.168.0.101/PHP%20Beasiswa/edit_jurusan.php";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_JURUSAN = "jurusan";
     private static final String TAG_KODE_JURUSAN = "kode_jurusan";
@@ -145,7 +145,7 @@ public class EditJurusan extends AppCompatActivity implements View.OnClickListen
             Log.d(TAG_DEBUG, "Do In Background - Update Jurusan");
             List<Pair<String, String>> args = new ArrayList<Pair<String, String>>();
             args.add(new Pair<String, String>(TAG_KODE_JURUSAN, sKodeJurusan));
-            args.add(new Pair<>(TAG_NAMA_JURUSAN, sNamaJurusan));
+            args.add(new Pair<String, String>(TAG_NAMA_JURUSAN, sNamaJurusan));
             JSONObject jsonObject = null;
             try{
                 jsonObject = jsonParser.getJsonObject(url_update_jurusan, "POST", args);

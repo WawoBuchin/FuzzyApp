@@ -48,8 +48,8 @@ public class Beasiswa extends AppCompatActivity implements View.OnClickListener,
     float[] p = new float[6];
     float[] z = new float[6];
 
-    private static String url_beasiswa = "http://192.168.0.100/PHP%20Beasiswa/create_beasiswa.php";
-    private static String url_mahasiswa = "http://192.168.0.100/PHP%20Beasiswa/read_mahasiswa.php";
+    private static String url_beasiswa = "http://192.168.0.101/PHP%20Beasiswa/create_beasiswa.php";
+    private static String url_mahasiswa = "http://192.168.0.101/PHP%20Beasiswa/read_mahasiswa.php";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_DEBUG = "DEBUG";
     private static final String TAG_NETWORK = "NETWORK";

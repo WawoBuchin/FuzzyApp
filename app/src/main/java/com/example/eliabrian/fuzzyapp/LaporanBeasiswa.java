@@ -32,7 +32,7 @@ public class LaporanBeasiswa extends AppCompatActivity {
     ProgressDialog progressDialog;
     JSONArray laporan = null;
 
-    private static String url_laporan = "http://192.168.0.100/PHP%20Beasiswa/read_beasiswa.php";
+    private static String url_laporan = "http://192.168.0.101/PHP%20Beasiswa/read_beasiswa.php";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_NETWORK = "NETWORK";
     private static final String TAG_DEBUG = "DEBUG";
