@@ -26,7 +26,6 @@
         <activity android:name=".InsertMahasiswa" />
         <activity android:name=".Beasiswa" />
         <activity android:name=".LaporanBeasiswa" />
-        <activity android:name=".EditMahasiswa"></activity>
     </application>
 
 </manifest>

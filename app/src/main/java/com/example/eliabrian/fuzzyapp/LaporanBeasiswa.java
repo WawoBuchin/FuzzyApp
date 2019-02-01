@@ -36,7 +36,10 @@ public class LaporanBeasiswa extends AppCompatActivity {
     ArrayList<HashMap<String, String>> laporanList;
     ProgressDialog progressDialog;
     JSONArray laporan = null;
+    Object objLaporan;
+    String idBeasiswa;
 
+    private static String url_delete_laporan = "http://192.168.43.116:8888/PHP%20Beasiswa/delete_beasiswa.php";
     private static String url_laporan = "http://192.168.43.116:8888/PHP%20Beasiswa/read_beasiswa.php";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_NETWORK = "NETWORK";
@@ -65,47 +68,41 @@ public class LaporanBeasiswa extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d(TAG_DEBUG, "On Click");
                 String kode ="a";
-                Object a;
-                ArrayList<String> as = new ArrayList<String>();
+
                 //Intent i = new Intent(getApplicationContext(), EditJurusan.class);
                 //i.putExtra(TAG_ID, kode);
                 //startActivityForResult(i, 100);
-                a = parent.getItemAtPosition(position);
-                String  y =a.toString();
+                objLaporan = parent.getItemAtPosition(position);
+                String  y =objLaporan.toString();
                 String no = y.split("id_beasiswa=")[1];
-                String noss = no.split(",")[0];
-                //System.out.println("Value is "+val);
-                Log.d("ADAAAA", y);
-                Log.d("QW", no);
-                Log.d("QW", noss);
-                //alertDilog(position,val);
+                idBeasiswa = no.split(",")[0];
+                alertDilog(position,idBeasiswa);
 
             }
         });
     }
 
-    public void alertDilog(final int position,String a) {
+    public void alertDilog(final int position,String idBeasiswa) {
 
         // TODO Auto-generated method stub
 
         // Creating alert Dialog with two Buttons
 
-        String kode = a;
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
 
         // Setting Dialog Title
-        alertDialog.setTitle("Confirm Delete...");
+        alertDialog.setTitle("Confirm Delete");
 
         // Setting Dialog Message
-        alertDialog.setMessage("Are you sure you want delete this?" +a);
+        alertDialog.setMessage("Are you sure you want delete this ?");
 
         // Setting Icon to Dialog
-        alertDialog.setIcon(R.drawable.ic_delete_forever_black_24dp);
+        alertDialog.setIcon(R.drawable.ic_delete_black_24dp);
 
         // Setting Positive "Yes" Button
         alertDialog.setPositiveButton("YES",new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog,int which) {
-
+                new deleteLaporan().execute();
                 // Write your code here to execute after dialog
 
             }
@@ -198,6 +195,49 @@ public class LaporanBeasiswa extends AppCompatActivity {
                     new String[]{TAG_ID, TAG_NIM, TAG_NAMA, TAG_JURUSAN, TAG_IPK, TAG_STATUS},
                     new int[]{R.id.tvKode, R.id.tvNim, R.id.tvNama, R.id.tvJurusan, R.id.tvIpk, R.id.tvStatus });
             listView.setAdapter(adapter);
+        }
+    }
+
+    // delete
+    private class deleteLaporan extends AsyncTask<String, String, String> {
+
+        @Override
+        protected void onPreExecute(){
+            super.onPreExecute();
+            progressDialog = new ProgressDialog(LaporanBeasiswa.this);
+            progressDialog.setMessage("Updating Jurusan...");
+            progressDialog.setIndeterminate(false);
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            Log.d(TAG_DEBUG, "Do In Background - delete Jurusan");
+            List<Pair<String, String>> args = new ArrayList<Pair<String, String>>();
+            args.add(new Pair<String, String>(TAG_ID, idBeasiswa));
+            JSONObject jsonObject = null;
+            try{
+                jsonObject = jsonParser.getJsonObject(url_delete_laporan, "POST", args);
+            }catch(IOException e){
+                Log.d(TAG_NETWORK, e.getLocalizedMessage());
+            }
+            try{
+                int success = jsonObject.getInt(TAG_SUCCESS);
+                if (success == 1){
+                    Intent i = new Intent(getApplicationContext(), LaporanBeasiswa.class);
+                    startActivity(i);
+                    finish();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s){
+            progressDialog.dismiss();
         }
     }
 }
