@@ -29,9 +29,9 @@ public class EditJurusan extends AppCompatActivity implements View.OnClickListen
     String sKodeJurusan, sNamaJurusan;
     int posisi;
 
-    private static String url_all_jurusan = "http://192.168.43.116:8888/PHP%20Beasiswa/read_jurusan.php";
-    private static String url_delete_jurusan = "http://192.168.43.116:8888/PHP%20Beasiswa/delete_jurusan.php";
-    private static String url_update_jurusan = "http://192.168.43.116:8888/PHP%20Beasiswa/edit_jurusan.php";
+    private static String url_all_jurusan = "http://10.0.2.2/PHP%20Beasiswa/read_jurusan.php";
+    private static String url_delete_jurusan = "http://10.0.2.2/PHP%20Beasiswa/delete_jurusan.php";
+    private static String url_update_jurusan = "http://10.0.2.2/PHP%20Beasiswa/edit_jurusan.php";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_JURUSAN = "jurusan";
     private static final String TAG_KODE_JURUSAN = "kode_jurusan";

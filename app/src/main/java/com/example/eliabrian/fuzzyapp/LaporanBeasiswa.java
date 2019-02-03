@@ -39,8 +39,8 @@ public class LaporanBeasiswa extends AppCompatActivity {
     Object objLaporan;
     String idBeasiswa;
 
-    private static String url_delete_laporan = "http://192.168.43.116:8888/PHP%20Beasiswa/delete_beasiswa.php";
-    private static String url_laporan = "http://192.168.43.116:8888/PHP%20Beasiswa/read_beasiswa.php";
+    private static String url_delete_laporan = "http://10.0.2.2/PHP%20Beasiswa/delete_beasiswa.php";
+    private static String url_laporan = "http://10.0.2.2/PHP%20Beasiswa/read_beasiswa.php";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_NETWORK = "NETWORK";
     private static final String TAG_DEBUG = "DEBUG";

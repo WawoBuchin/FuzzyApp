@@ -35,7 +35,7 @@ public class JurusanActivity extends AppCompatActivity implements View.OnClickLi
     ProgressDialog progressDialog;
     JSONArray jurusan = null;
 
-    private static String url_all_jurusan = "http://192.168.43.116:8888/PHP%20Beasiswa/read_jurusan.php";
+    private static String url_all_jurusan = "http://10.0.2.2/PHP%20Beasiswa/read_jurusan.php";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_JURUSAN = "jurusan";
     private static final String TAG_KODE_JURUSAN = "kode_jurusan";
@@ -53,7 +53,10 @@ public class JurusanActivity extends AppCompatActivity implements View.OnClickLi
         jurusanList = new ArrayList<>();
         mInsert = (FloatingActionButton)findViewById(R.id.fab);
         mInsert.setOnClickListener(this);
+
+        
         new loadJurusan().execute();
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

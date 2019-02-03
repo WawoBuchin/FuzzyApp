@@ -3,6 +3,7 @@ package com.example.eliabrian.fuzzyapp;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.StrictMode;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,10 +36,10 @@ public class EditMahasiswa extends AppCompatActivity implements View.OnClickList
     JSONArray jurusan = null;
     private ArrayList<String> listJurusan;
 
-    private static String url_all_jurusan = "http://192.168.0.101/PHP%20Beasiswa/read_jurusan.php";
-    private static String url_all_mahasiswa = "http://192.168.0.101/PHP%20Beasiswa/read_mahasiswa.php";
-    private static String url_edit_mahasiswa = "http://192.168.0.101/PHP%20Beasiswa/edit_mahasiswa.php";
-    private static String url_delete_mahasiswa = "http://192.168.0.101/PHP%20Beasiswa/delete_mahasiswa.php";
+    private static String url_all_jurusan = "http://10.0.2.2/PHP%20Beasiswa/read_jurusan.php";
+    private static String url_all_mahasiswa = "http://10.0.2.2/PHP%20Beasiswa/read_mahasiswa.php";
+    private static String url_edit_mahasiswa = "http://10.0.2.2/PHP%20Beasiswa/edit_mahasiswa.php";
+    private static String url_delete_mahasiswa = "http://10.0.2.2/PHP%20Beasiswa/delete_mahasiswa.php";
 
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_DEBUG = "DEBUG";
@@ -57,6 +58,9 @@ public class EditMahasiswa extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_mahasiswa);
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
         mNim = (TextInputEditText)findViewById(R.id.itNim);
         mNama = (TextInputEditText)findViewById(R.id.itNama);
@@ -123,7 +127,7 @@ public class EditMahasiswa extends AppCompatActivity implements View.OnClickList
             JSONObject jsonObject = null;
             try{
                 jsonObject = jsonParser.getJsonObject(url_all_jurusan, "POST", args);
-                Log.d(TAG_MAHASISWA, jsonObject.toString());
+                Log.d(TAG_JURUSAN, jsonObject.toString());
             }catch(IOException e){
                 Log.d(TAG_NETWORK, e.getLocalizedMessage());
             }
@@ -143,6 +147,7 @@ public class EditMahasiswa extends AppCompatActivity implements View.OnClickList
                 e.printStackTrace();
             }
             mSpinner.setAdapter(new ArrayAdapter<String>(EditMahasiswa.this, android.R.layout.simple_spinner_dropdown_item, listJurusan));
+
             return null;
         }
 
@@ -193,8 +198,9 @@ public class EditMahasiswa extends AppCompatActivity implements View.OnClickList
                         success = jsonObject.getInt(TAG_SUCCESS);
                         if(success == 1){
                             Log.d(TAG_DEBUG, "Mahasiswa ditemukan");
-                            JSONArray j = jsonObject.getJSONArray(TAG_JURUSAN);
+                            JSONArray j = jsonObject.getJSONArray(TAG_MAHASISWA);
                             JSONObject mahasiswa = j.getJSONObject(posisi);
+                            mNim.setText(mahasiswa.getString(TAG_NIM_MAHASISWA));
                             mNama.setText(mahasiswa.getString(TAG_NAMA_MAHASISWA));
                             mSms.setText(mahasiswa.getString(TAG_SMS_MAHASISWA));
                             setSpinnerText(mSpinner, mahasiswa.getString(TAG_KODE_JURUSAN));
@@ -206,6 +212,7 @@ public class EditMahasiswa extends AppCompatActivity implements View.OnClickList
                     }
                 }
             });
+            progressDialog.dismiss();
             return null;
         }
 

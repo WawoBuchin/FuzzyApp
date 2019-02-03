@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
     AppCompatButton mLogin;
     String sUsername, sPassword;
 
-    private static String url_login = "http://192.168.43.116:8888/PHP%20Beasiswa/login.php";
+    private static String url_login = "http://10.0.2.2/PHP%20Beasiswa/login.php";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_DEBUG = "DEBUG";
     private static final String TAG_NETWORK = "NETWORK";

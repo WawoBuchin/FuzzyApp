@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-    Button btnjur, btnmhs, btnhit, btnlap;
+    Button btnjur, btnmhs, btnhit, btnlap, btnout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,10 +16,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnmhs = (Button)findViewById(R.id.buttonmhs);
         btnhit = (Button)findViewById(R.id.buttonhit);
         btnlap = (Button)findViewById(R.id.buttonlap);
+        btnout = (Button)findViewById(R.id.buttonlogout);
         btnjur.setOnClickListener(this);
         btnmhs.setOnClickListener(this);
         btnhit.setOnClickListener(this);
         btnlap.setOnClickListener(this);
+        btnout.setOnClickListener(this);
     }
 
     @Override
@@ -40,6 +42,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.buttonlap:
                 intent = new Intent(this, LaporanBeasiswa.class);
                 startActivity(intent);
+                break;
+            case R.id.buttonlogout:
+                intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+                finish();
                 break;
         }
     }

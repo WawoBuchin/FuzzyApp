@@ -25,7 +25,7 @@ public class InsertJurusan extends AppCompatActivity implements View.OnClickList
     FloatingActionButton mSave;
     String sKodeJurusan, sNamaJurusan;
 
-    private static String url_login = "http://192.168.0.100/PHP%20Beasiswa/create_jurusan.php";
+    private static String url_insert_jurusan = "http://10.0.2.2/PHP%20Beasiswa/create_jurusan.php";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_DEBUG = "DEBUG";
     private static final String TAG_NETWORK = "NETWORK";
@@ -72,7 +72,7 @@ public class InsertJurusan extends AppCompatActivity implements View.OnClickList
             args.add(new Pair<>("nama_jurusan", sNamaJurusan));
             JSONObject jsonObject = null;
             try{
-                jsonObject = jsonParser.getJsonObject(url_login, "POST", args);
+                jsonObject = jsonParser.getJsonObject(url_insert_jurusan, "POST", args);
             }catch (IOException e){
                 Log.d(TAG_NETWORK, e.getLocalizedMessage());
             }
